@@ -142,9 +142,10 @@ let DataSynthConfig = {
       stDev: 10
     },
     */
-    { name: 'weight_lbs',
-  type: DataSynthUtil.RANDOM_NUMERIC_RANGE_EXPONENTIAL,
-  lamdba: 1.1
+    { name: 'weight_lbs:formatWeight',
+      type: DataSynthUtil.RANDOM_NUMERIC_RANGE_NORMAL,
+      mean: 190,
+      stDev: 10
 },
     {
       name: 'dateCreated',

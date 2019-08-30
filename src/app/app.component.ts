@@ -28,19 +28,13 @@ export class AppComponent {
         console.log('dataset ', data);
         this.generatedDataset = data;
 
-        let i = 0;
-        let wtTmp = [];
-        for (i = 0; i < DataSynthConfig.recordsToGenerate; i++) {
-          wtTmp.push(data[i].weight_lbs);
-        }
-        console.log('wtTmp', wtTmp.join('|'));
+
 
       },
       (err) => {
         console.log('error generating data set', err);
       }
     );
-
 
 
 
