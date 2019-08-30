@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+
+body {
+  font-family: Ubuntu, Roboto, Helvetica, sans-serif;
+}
+
+table {
+
+  tr {
+
+    th {
+      text-align: left;
+      font-weight: normal;
+      color: #999999;
+      padding-right:25px;
+    }
+
+    td {
+      padding-right:25px;
+    }
+
+  }
+
+}
