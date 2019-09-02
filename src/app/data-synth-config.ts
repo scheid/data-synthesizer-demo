@@ -1,6 +1,8 @@
 
 
 import { DataSynthUtil } from 'data-synthesizer';
+import { personNames } from 'data-synthesizer-common-lists';
+
 
 /*
  Sample Data Synthesizer Configuration Object
@@ -111,7 +113,7 @@ let DataSynthConfig = {
       //  for example if you have an array of objects of first and last names, you may want to randomly select an object
       //  and assign the first and last name fields of that object to two different fields here.
       name: ['personFirstName', 'personLastName:uCase'],
-      list: DataSynthUtil.PersonNames,
+      list: personNames,
       listObjectFieldName: ['firstName', 'lastName'],  // the name of the fields to use from the object in the array of objects defined in 'list'
       type: DataSynthUtil.RANDOM_LIST_UNIFORM
 
