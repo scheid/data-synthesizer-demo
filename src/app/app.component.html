@@ -2,6 +2,19 @@
 
 <div style="margin: 50px;">
 
+
+  <div>
+    <h3>LogNormal</h3>
+    <simple-histogram [data]="logNormalDist"></simple-histogram>
+
+    <h3>Exponential</h3>
+    <simple-histogram [data]="exponentialDist"></simple-histogram>
+
+    <h3>Normal</h3>
+    <simple-histogram [data]="normalDist"></simple-histogram>
+  </div>
+
+
   <h2>Sample Generated Data from the Data Synthesizer</h2>
   <div>{{recordCount}} records generated in {{genTimeMsec}} milliseconds</div>
 

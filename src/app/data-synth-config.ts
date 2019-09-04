@@ -119,12 +119,25 @@ let DataSynthConfig = {
 
     },
 
+    {
+      name: 'dummyVar',
+      type: DataSynthUtil.RANDOM_NUMERIC_RANGE_UNIFORM,
+
+      // temporary can be used when you are using calculated variables, and you need a variable
+      // to be generated for the sole purpose of being used in the creation of the calculated value.
+      // temporary variables will not be returned in the final dataset.
+      temporary: true
+
+    },
+
     // calcuated fields are based solely off of values for other fields in the same record.
     {
       name: 'firstAndLastName',
 
       // a field type of CALCULATED tells the generator to delay assigning this until all other fields in the record are assigned.
       type: DataSynthUtil.CALCULATED,
+
+      order: 1,  // this will only be used on calculated fields; if any of your calculated fields have values that depend on other calculated fields, then you can specify a calculation order; the fields will be calculated starting at the lowest value.
 
       // this is sort of a nonsense example, that just combines the person first and last name into a string and
       //  uses that as the field value.
@@ -133,7 +146,8 @@ let DataSynthConfig = {
       // the entire data record will be passed into this function, so you can calulate this
       // field's value based off any of the other variable values.
       // the record will be an object with the field names and assigned values.
-      fn: (rec) => (rec.personFirstName + ' ' + rec.personLastName)
+      // this is rather silly, but just shows how you can use a hidden variable in a calculated field; the hidden variable 'dummyVar' will be removed in the final dataset.
+      fn: (rec) => { if (rec.dummyVar > 0.5) { rec.personFirstName + ' ' + rec.personLastName; } }
     },
 
     /*
