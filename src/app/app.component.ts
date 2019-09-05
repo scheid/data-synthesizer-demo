@@ -20,22 +20,51 @@ export class AppComponent {
   exponentialDist: number[];
   normalDist: number[];
 
+
+  weightDistribution: number[];
+  heightDistribution: number[];
+  bmiDistribution: number[];
+
+  dataCfg: any;
+
   constructor(private dataSynthesizerService: DataSynthesizerService) {
 
+    this.dataCfg = DataSynthConfig;
     this.recordCount = DataSynthConfig.recordsToGenerate;
     this.start = new Date().getTime();
+
+    this.heightDistribution = [];
+    this.weightDistribution = [];
+    this.bmiDistribution = [];
 
     this.dataSynthesizerService.generateDataset(DataSynthConfig).subscribe(
       (data) => {
         this.end = new Date().getTime();
         this.genTimeMsec = this.end - this.start;
-        // console.log('dataset ', data);
         this.generatedDataset = data;
+
+
+
+        let i = 0;
+
+        for (i = 0; i < data.length; i++) {
+          this.weightDistribution.push(data[i].weight_lbs);
+          this.heightDistribution.push(data[i].height_inches);
+          this.bmiDistribution.push(data[i].bmi);
+        }
+
+       // this.weightDistribution = _tmp1;
+
+
       },
       (err) => {
         console.log('error generating data set', err);
       }
     );
+
+
+    // the synthesizer service also has lower level functions that will give you raw generated random data. Some
+    // of these functions are shown below.  All functions return an observable.
 
     // for lognormal low sigmas (<1) will result in more of a spread of the data, esp. with low mu (~1)
     // remember lognormal is always zero low bounded

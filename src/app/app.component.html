@@ -2,20 +2,26 @@
 
 <div style="margin: 50px;">
 
+  <h2>Frequency distributions of the weight and height generated values</h2>
 
-  <div>
-    <h3>LogNormal</h3>
-    <simple-histogram [data]="logNormalDist"></simple-histogram>
+  <div >
 
-    <h3>Exponential</h3>
-    <simple-histogram [data]="exponentialDist"></simple-histogram>
+    <h3>Weight Value Frequency Distribution</h3>
+    <simple-histogram [data]="weightDistribution"></simple-histogram>
 
-    <h3>Normal</h3>
-    <simple-histogram [data]="normalDist"></simple-histogram>
+    <h3>Height Value Frequency Distribution</h3>
+    <simple-histogram [data]="heightDistribution"></simple-histogram>
+
+    <!--
+    <h3>BMI Value Frequency Distribution</h3>
+    <p>out of curiosity, what does the bmi distribution look like that was calculated from weight and height?</p>
+    <simple-histogram [data]="bmiDistribution"></simple-histogram>
+-->
+
   </div>
 
 
-  <h2>Sample Generated Data from the Data Synthesizer</h2>
+  <h2>Generated Data from the Data Synthesizer</h2>
   <div>{{recordCount}} records generated in {{genTimeMsec}} milliseconds</div>
 
   <table style="margin-top: 32px;">
@@ -26,6 +32,8 @@
       <th>Person</th>
       <th>Person name combined</th>
       <th>Weight (lbs)</th>
+      <th>Height (inches)</th>
+      <th>BMI</th>
       <th>Favorite Color</th>
       <th>Date Created</th>
       <th>Pets</th>
@@ -39,6 +47,8 @@
       <td>{{item.personLastName}}, {{item.personFirstName}}</td>
       <td>{{item.firstAndLastName}}</td>
       <td>{{item.weight_lbs}} lbs</td>
+      <td>{{item.height_inches}} inches</td>
+      <td>{{item.bmi}}</td>
       <td>{{item.favoriteColor}}</td>
       <td>{{formatDate(item.dateCreated)}}</td>
       <td><div>has dog {{item.personPets.hasDog}}</div>
@@ -50,6 +60,23 @@
     </tr>
 
   </table>
+
+  <h2>Frequency distribution examples of various generated values, from the low-level data synthesizer functions.</h2>
+  <div>
+    <div>
+
+      <h3>LogNormal</h3>
+      <simple-histogram [data]="logNormalDist"></simple-histogram>
+
+      <h3>Exponential</h3>
+      <simple-histogram [data]="exponentialDist"></simple-histogram>
+
+      <h3>Normal</h3>
+      <simple-histogram [data]="normalDist"></simple-histogram>
+
+    </div>
+
+  </div>
 
 </div>
 

@@ -1,12 +1,16 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, OnChanges, DoCheck,  SimpleChanges} from '@angular/core';
 import * as d3 from 'd3';
+
+/*
+  Simple histogram; uses d3js for both the binning and the display.
+ */
 
 @Component({
   selector: 'simple-histogram',
   templateUrl: './simple-histogram.component.html',
   styleUrls: ['./simple-histogram.component.scss']
 })
-export class SimpleHistogramComponent implements OnInit {
+export class SimpleHistogramComponent implements OnInit, OnChanges, DoCheck {
 
   @ViewChild('chartContents', {static: false}) chartContents;
   _data: number[];
@@ -27,17 +31,37 @@ export class SimpleHistogramComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+   /*
+    if (changes.data && changes.data.currentValue) {
+      this._data = changes.data.currentValue;
+      this.drawChart();
+    }
+    */
+
+  }
+
+  // do check is a bit inefficient; but only one that reliably works.
+  ngDoCheck(): void {
+
+    //console.log('docheck', this._data);
+    this.drawChart();
+  }
+
   drawChart() {
 
-    if (!this._data) { return; }
 
-// set the dimensions and margins of the graph
+    if (!this._data || this._data.length <= 0) { return; }
+
+
+
     const margin = {top: 10, right: 30, bottom: 30, left: 40},
       width = 700 - margin.left - margin.right,
-      height = 450 - margin.top - margin.bottom;
+      height = 350 - margin.top - margin.bottom;
 
+    // TODO: should use the more d3-ish way of updating rather than removing all each time.
+    d3.select(this.chartContents.nativeElement).selectAll('*').remove();
 
-// append the svg object to the body of the page
     const svg = d3.select(this.chartContents.nativeElement)
       .append('svg')
       .attr('width', width + margin.left + margin.right)
@@ -57,11 +81,11 @@ export class SimpleHistogramComponent implements OnInit {
 
     // set the parameters for the histogram
     const histogram = d3.histogram()
-      .value((d) => d )   // I need to give the vector of value
-      .domain(x.domain())  // then the domain of the graphic
-      .thresholds(x.ticks(this.binCount)); // then the numbers of bins
+      .value((d) => d )
+      .domain(x.domain())  //  the domain of the graphic
+      .thresholds(x.ticks(this.binCount)); //  the numbers of bins
 
-    // And apply this function to data to get the bins
+    //  apply this function to data to get the bins
     const bins = histogram(this._data);
 
     // Y axis: scale and draw:
