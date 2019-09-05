@@ -46,6 +46,7 @@ export class AppComponent {
         this.generatedDataset = data;
 
 
+        console.log('data', data);
 
         let i = 0;
 
@@ -109,6 +110,8 @@ export class AppComponent {
         this.normalDist = data;
       }
     );
+
+
 
 
 
