@@ -6,10 +6,12 @@ import DataSynthConfig from './data-synth-config';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  providers: [
+    {provide: 'rndSeed', useValue: 238766}  // this will be auto injected into the data synthesizer service
+  ]
 })
 export class AppComponent {
-
   generatedDataset: any;
   genTimeMsec: number;
   recordCount: number;
@@ -61,6 +63,16 @@ export class AppComponent {
         console.log('error generating data set', err);
       }
     );
+
+
+
+    // NOTE: if you are using only the low level functions, then you'll need to
+    // seed the generator manully using: this.dataSynthesizerService.setSeed(2398765);
+    // with whatever you want for your seed
+    // setSeed returns an observable (boolean) so you'll need to handle appropriately; waiting to call your random
+    // functions until setseed returns with true
+
+    // if you use the generateDataset function, that will seed the generator, and you can use your low level functions inside the subscribed function for generateDataset
 
 
     // the synthesizer service also has lower level functions that will give you raw generated random data. Some
