@@ -220,7 +220,7 @@ let DataSynthConfig = {
     },
     {
       name: 'otherFriendsName',
-      type: DataSynthUtil.ITEMS_FROM_SET,
+      type: DataSynthUtil.N_RANDOM_ITEMS_FROM_LIST,
       itemCount: 3,
       list: ['Juliet G. Brock', 'Bradley Z. Duran', 'Kelsie G. Deleon', 'Jack C. Rios', 'Candice I. Meyer', 'Ursa L. Trujillo']
     }

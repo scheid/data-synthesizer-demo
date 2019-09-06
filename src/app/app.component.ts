@@ -70,7 +70,7 @@ export class AppComponent {
     // NOTE: if you are using only the low level functions, then you'll need to
     // seed the generator manully using: this.dataSynthesizerService.setSeed(2398765);
     // with whatever you want for your seed
-    // setSeed returns an observable (boolean) so you'll need to handle appropriately; waiting to call your random
+    // setSeed returns an Observable<boolean> (true if successful) so you'll need to handle appropriately; waiting to call your random
     // functions until setseed returns with true
 
     // if you use the generateDataset function, that will seed the generator, and you can use your low level functions inside the subscribed function for generateDataset
