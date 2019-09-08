@@ -39,6 +39,8 @@ export class AppComponent {
     this.weightDistribution = [];
     this.bmiDistribution = [];
 
+    // you can create as many data synth configs as you need. call the service separately with each config
+    // to get different datasets for your application.
     this.dataSynthesizerService.generateDataset(DataSynthConfig).subscribe(
       (data) => {
         this.end = new Date().getTime();

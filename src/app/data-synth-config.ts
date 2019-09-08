@@ -105,6 +105,14 @@ let DataSynthConfig = {
 
 
     {
+      // step through each item in the list sequentially, and if more records than list items,
+      // then start over at beginning of list once it reaches end.
+      name: 'beans_sequence',
+      type: DataSynthUtil.SEQUENCE_LIST,
+      list: ['black beans', 'black-eyed peas', 'borlotti bean', 'broad beans', 'chickpeas', 'green beans', 'kidney beans', 'lentils']
+    },
+
+    {
 
       // you can assign multiple field values simultaneously; really this would only be done when sourcing from lists.
       // doesn't make much sense with numeric based values.
@@ -123,6 +131,18 @@ let DataSynthConfig = {
       name: ['personFirstName', 'personLastName:uCase'],
       list: personNames,
       listObjectFieldName: ['firstName', 'lastName'],  // the name of the fields to use from the object in the array of objects defined in 'list'
+      type: DataSynthUtil.RANDOM_LIST_UNIFORM
+
+    },
+
+    {
+      // Note that if you have a list of objects, like the person names list, and you treat it simply, like this, just a simple field
+      // assignment, then the entire person name list object will be assigned; the individual list object containing both the first and last name
+      // this can be useful in some cases. It especially gives you flexibility in using your own list and how you can assign values.
+      // in the above assignment, we are breaking out the first and last names and assigning each to separate fields. here we just assign
+      // an entire randomly selected object to the field value.
+      name: 'personName',
+      list: personNames,
       type: DataSynthUtil.RANDOM_LIST_UNIFORM
 
     },

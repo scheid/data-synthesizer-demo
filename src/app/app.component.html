@@ -39,6 +39,7 @@
       <th>Pets</th>
       <th>Friend</th>
       <th>other Friends</th>
+      <th>Sequence List Items</th>
     </tr>
     <tr *ngFor="let item of generatedDataset">
 
@@ -63,6 +64,7 @@
         <li *ngFor="let m of item.otherFriendsName">{{m}}</li>
         </ul>
       </td>
+      <td>{{item.beans_sequence}}</td>
 
     </tr>
 
