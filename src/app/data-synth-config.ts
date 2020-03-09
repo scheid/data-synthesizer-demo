@@ -243,6 +243,11 @@ let DataSynthConfig = {
       type: DataSynthUtil.N_RANDOM_ITEMS_FROM_LIST,
       itemCount: 3,
       list: ['Juliet G. Brock', 'Bradley Z. Duran', 'Kelsie G. Deleon', 'Jack C. Rios', 'Candice I. Meyer', 'Ursa L. Trujillo']
+    },
+
+    {
+      name: 'longText',
+      type: DataSynthUtil.LOREM_IPSUM
     }
 
   ]
