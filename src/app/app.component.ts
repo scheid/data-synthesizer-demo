@@ -47,10 +47,18 @@ export class AppComponent {
         this.genTimeMsec = this.end - this.start;
         this.generatedDataset = data;
 
+        let i = 0;
+
+        // the paragraphs of text will come in separated by new line characters (\n). In this demo we want to display the paragaphs as html
+        // so, we are splitting the paragraphs by new line characters in an array of the paragraphs, and then in the angular template we will
+        // wrap each of those array elements in <p> tags
+        for (i = 0; i < this.generatedDataset.length; i++) {
+          this.generatedDataset[i].longText = this.generatedDataset[i].longText.split("\n");
+        }
+
 
         console.log('data', data);
 
-        let i = 0;
 
         for (i = 0; i < data.length; i++) {
           this.weightDistribution.push(data[i].weight_lbs);

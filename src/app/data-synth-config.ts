@@ -250,7 +250,7 @@ let DataSynthConfig = {
       type: DataSynthUtil.LOREM_IPSUM,
       singleSentence: false,
       minParagraphs: 1,
-      maxParagraphs: 4
+      maxParagraphs: 3
     }
 
   ]

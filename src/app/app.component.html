@@ -61,13 +61,15 @@
       <td>{{item.friendName}}</td>
 
       <td>
-        <ul>
-        <li *ngFor="let m of item.otherFriendsName">{{m}}</li>
+        <ul style="margin-top:0;padding-top:0">
+        <li style="margin-top:0;padding-top:0;padding-bottom:8px" *ngFor="let m of item.otherFriendsName">{{m}}</li>
         </ul>
       </td>
       <td>{{item.beans_sequence}}</td>
 
-      <td>{{item.longText}}</td>
+      <td>
+        <p *ngFor="let para of item.longText">{{para}}</p>
+      </td>
 
     </tr>
 
